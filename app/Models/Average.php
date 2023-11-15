@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Average extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id_criteria',
+        'value',
+    ];
+
+    public function criteria()
+    {
+        return $this->belongsTo(Criteria::class);
+    }
 }

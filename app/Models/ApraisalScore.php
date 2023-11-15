@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ApraisalScore extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id_alternative',
+        'value',
+    ];
+
+    public function alternative()
+    {
+        return $this->belongsTo(Alternative::class);
+    }
 }
