@@ -17,11 +17,11 @@ class PDA extends Model
 
     public function criteria()
     {
-        return $this->belongsTo(Criteria::class);
+        return $this->belongsTo(Criteria::class, 'id_criteria', 'id');
     }
 
     public function alternative()
     {
-        return $this->belongsTo(Alternative::class);
+        return $this->belongsTo(Alternative::class, 'id_alternative', 'id');
     }
 }

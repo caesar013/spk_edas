@@ -19,26 +19,26 @@ class Criteria extends Model
 
     public function edas()
     {
-        return $this->belongsTo(Edas::class);
+        return $this->belongsTo(Edas::class, 'id_edas', 'id');
     }
 
     public function decisionmatrices()
     {
-        return $this->hasMany(DecisionMatrix::class);
+        return $this->hasMany(DecisionMatrix::class, 'id_criteria', 'id');
     }
 
     public function averages()
     {
-        return $this->hasMany(Average::class);
+        return $this->hasMany(Average::class, 'id_criteria', 'id');
     }
 
     public function pdas()
     {
-        return $this->hasMany(PDA::class);
+        return $this->hasMany(PDA::class, 'id_criteria', 'id');
     }
 
     public function ndas()
     {
-        return $this->hasMany(NDA::class);
+        return $this->hasMany(NDA::class, 'id_criteria', 'id');
     }
 }

@@ -16,16 +16,16 @@ class Edas extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
     public function criterias()
     {
-        return $this->hasMany(Criteria::class);
+        return $this->hasMany(Criteria::class, 'id_edas', 'id');
     }
 
     public function alternatives()
     {
-        return $this->hasMany(Alternative::class);
+        return $this->hasMany(Alternative::class, 'id_edas', 'id');
     }
 }

@@ -16,46 +16,46 @@ class Alternative extends Model
 
     public function edas()
     {
-        return $this->belongsTo(Edas::class);
+        return $this->belongsTo(Edas::class, 'id_edas', 'id');
     }
 
     public function decisionmatrices()
     {
-        return $this->hasMany(DecisionMatrix::class);
+        return $this->hasMany(DecisionMatrix::class, 'id_alternative', 'id');
     }
 
     public function pdas()
     {
-        return $this->hasMany(PDA::class);
+        return $this->hasMany(PDA::class, 'id_alternative', 'id');
     }
 
     public function ndas()
     {
-        return $this->hasMany(NDA::class);
+        return $this->hasMany(NDA::class, 'id_alternative', 'id');
     }
 
     public function sps()
     {
-        return $this->hasMany(SP::class);
+        return $this->hasMany(SP::class, 'id_alternative', 'id');
     }
 
     public function sns()
     {
-        return $this->hasMany(SN::class);
+        return $this->hasMany(SN::class, 'id_alternative', 'id');
     }
 
     public function nsps()
     {
-        return $this->hasMany(NSP::class);
+        return $this->hasMany(NSP::class, 'id_alternative', 'id');
     }
 
     public function nsns()
     {
-        return $this->hasMany(NSN::class);
+        return $this->hasMany(NSN::class, 'id_alternative', 'id');
     }
 
     public function apraisalscores()
     {
-        return $this->hasMany(ApraisalScore::class);
+        return $this->hasMany(ApraisalScore::class, 'id_alternative', 'id');
     }
 }

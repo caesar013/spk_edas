@@ -16,6 +16,6 @@ class NSN extends Model
 
     public function alternative()
     {
-        return $this->belongsTo(Alternative::class);
+        return $this->belongsTo(Alternative::class, 'id_alternative', 'id');
     }
 }
