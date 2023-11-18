@@ -13,10 +13,12 @@ class User extends Authenticatable
         'name',
         'username',
         'password',
+        'remember_token'
     ];
 
     protected $hidden = [
         'password',
+        'remember_token'
     ];
 
     public function edas()
