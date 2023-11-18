@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Edas;
-use App\Http\Requests\StoreEdasRequest;
 use App\Http\Requests\UpdateEdasRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class EdasController extends Controller
 {
@@ -13,7 +15,7 @@ class EdasController extends Controller
      */
     public function index()
     {
-        //
+        return view('edas');
     }
 
     /**
@@ -27,9 +29,26 @@ class EdasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEdasRequest $request)
+    public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required|string|max:50',
+            'id_user' => 'required|integer|exists:users,id',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'error' => $validator->messages()
+            ]);
+        } else {
+            $serv = Edas::create($validator->validated());
+            return response()->json([
+                'status' => true,
+                'message' => ($serv) ? 'EDAS added successfully' : "Failed"
+            ]);
+        }
     }
 
     /**
@@ -43,24 +62,84 @@ class EdasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Edas $edas)
+    public function edit($id_edas)
     {
-        //
+        $edas = Edas::where('id', '=', $id_edas)->first();
+        if ($edas) {
+            return response()->json([
+                'status' => true,
+                'edas' => $edas
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'error' => 'EDAS not Found'
+            ]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEdasRequest $request, Edas $edas)
+    public function update(Request $request, $id_edas)
     {
-        //
+        $rules = [
+            'name' => 'required|string|max:50',
+            'id_user' => 'required|integer|exists:users,id',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'error' => $validator->messages()
+            ]);
+        } else {
+            $edas = Edas::where('id', '=', $id_edas)->first();
+            if ($edas) {
+                $edas->update($validator->validated());
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data updated successfully'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'error' => 'EDAS not Found'
+                ]);
+            }
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Edas $edas)
+    public function destroy($id_edas)
     {
-        //
+        $edas = Edas::where('id', '=', $id_edas)->first();
+        if ($edas) {
+            $edas->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Data removed successfully'
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'error' => 'EDAS not Found'
+            ]);
+        }
+    }
+
+    public function fetchData()
+    {
+        return response()->json([
+            'edas' => Edas::with(['criterias' => function ($query) {
+                $query->selectRaw('id_edas, count(*) as criteria_count')->groupBy('id_edas');
+            }, 'alternatives' => function ($query) {
+                $query->selectRaw('id_edas, count(*) as alternative_count')->groupBy('id_edas');
+            }])->where('id_user', '=', Auth::id())->get()
+        ]);
     }
 }
