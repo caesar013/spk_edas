@@ -10,6 +10,7 @@ class SN extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_edas',
         'id_alternative',
         'value',
     ];

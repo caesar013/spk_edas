@@ -28,4 +28,49 @@ class Edas extends Model
     {
         return $this->hasMany(Alternative::class, 'id_edas', 'id');
     }
+
+    public function decisionmatrices()
+    {
+        return $this->hasMany(DecisionMatrix::class, 'id_edas', 'id');
+    }
+
+    public function apraisalscores()
+    {
+        return $this->hasMany(ApraisalScore::class, 'id_edas', 'id');
+    }
+
+    public function averages()
+    {
+        return $this->hasMany(Average::class, 'id_edas', 'id');
+    }
+
+    public function ndas()
+    {
+        return $this->hasMany(Nda::class, 'id_edas', 'id');
+    }
+
+    public function nsns()
+    {
+        return $this->hasMany(Nsn::class, 'id_edas', 'id');
+    }
+
+    public function nsps()
+    {
+        return $this->hasMany(Nsp::class, 'id_edas', 'id');
+    }
+
+    public function pdas()
+    {
+        return $this->hasMany(Pda::class, 'id_edas', 'id');
+    }
+
+    public function sns()
+    {
+        return $this->hasMany(Sn::class, 'id_edas', 'id');
+    }
+
+    public function sps()
+    {
+        return $this->hasMany(Sp::class, 'id_edas', 'id');
+    }
 }

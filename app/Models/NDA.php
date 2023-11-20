@@ -10,6 +10,7 @@ class NDA extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_edas',
         'id_criteria',
         'id_alternative',
         'value',

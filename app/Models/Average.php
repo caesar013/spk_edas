@@ -10,6 +10,7 @@ class Average extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_edas',
         'id_criteria',
         'value',
     ];

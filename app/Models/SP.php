@@ -10,6 +10,7 @@ class SP extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_edas',
         'id_alternative',
         'value',
     ];
