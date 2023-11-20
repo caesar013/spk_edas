@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DesicionMatrix extends Model
+class DecisionMatrix extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'id_edas',
         'id_criteria',
         'id_alternative',
         'value',

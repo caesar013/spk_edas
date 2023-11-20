@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DesicionMatrix;
-use App\Http\Requests\StoreDesicionMatrixRequest;
-use App\Http\Requests\UpdateDesicionMatrixRequest;
+use App\Models\DecisionMatrix;
+use App\Http\Requests\StoreDecisionMatrixRequest;
+use App\Http\Requests\UpdateDecisionMatrixRequest;
 
-class DesicionMatrixController extends Controller
+class DecisionMatrixController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class DesicionMatrixController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDesicionMatrixRequest $request)
+    public function store(StoreDecisionMatrixRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class DesicionMatrixController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DesicionMatrix $desicionMatrix)
+    public function show($id_edas)
     {
         //
     }
@@ -43,7 +43,7 @@ class DesicionMatrixController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DesicionMatrix $desicionMatrix)
+    public function edit(DecisionMatrix $decisionMatrix)
     {
         //
     }
@@ -51,7 +51,7 @@ class DesicionMatrixController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDesicionMatrixRequest $request, DesicionMatrix $desicionMatrix)
+    public function update(UpdateDecisionMatrixRequest $request, DecisionMatrix $decisionMatrix)
     {
         //
     }
@@ -59,7 +59,7 @@ class DesicionMatrixController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DesicionMatrix $desicionMatrix)
+    public function destroy(DecisionMatrix $decisionMatrix)
     {
         //
     }

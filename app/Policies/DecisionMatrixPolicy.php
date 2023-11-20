@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\DesicionMatrix;
+use App\Models\DecisionMatrix;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class DesicionMatrixPolicy
+class DecisionMatrixPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class DesicionMatrixPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, DesicionMatrix $desicionMatrix): bool
+    public function view(User $user, DecisionMatrix $decisionMatrix): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class DesicionMatrixPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, DesicionMatrix $desicionMatrix): bool
+    public function update(User $user, DecisionMatrix $decisionMatrix): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class DesicionMatrixPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, DesicionMatrix $desicionMatrix): bool
+    public function delete(User $user, DecisionMatrix $decisionMatrix): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class DesicionMatrixPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, DesicionMatrix $desicionMatrix): bool
+    public function restore(User $user, DecisionMatrix $decisionMatrix): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class DesicionMatrixPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, DesicionMatrix $desicionMatrix): bool
+    public function forceDelete(User $user, DecisionMatrix $decisionMatrix): bool
     {
         //
     }

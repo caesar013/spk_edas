@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DesicionMatrix>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DecisionMatrix>
  */
-class DesicionMatrixFactory extends Factory
+class DecisionMatrixFactory extends Factory
 {
     /**
      * Define the model's default state.
