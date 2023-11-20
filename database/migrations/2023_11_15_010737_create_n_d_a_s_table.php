@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('n_d_a_s', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_edas');
+            $table->foreign('id_edas')->references('id')->on('edas')->onDelete('cascade');
             $table->unsignedBigInteger('id_criteria');
             $table->foreign('id_criteria')->references('id')->on('criterias');
             $table->unsignedBigInteger('id_alternative');

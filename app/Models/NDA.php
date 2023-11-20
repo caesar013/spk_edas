@@ -24,4 +24,9 @@ class NDA extends Model
     {
         return $this->belongsTo(Alternative::class, 'id_alternative', 'id');
     }
+
+    public function edas()
+    {
+        return $this->belongsTo(Edas::class, 'id_edas', 'id');
+    }
 }

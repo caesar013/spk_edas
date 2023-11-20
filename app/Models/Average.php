@@ -18,4 +18,9 @@ class Average extends Model
     {
         return $this->belongsTo(Criteria::class, 'id_criteria', 'id');
     }
+
+    public function edas()
+    {
+        return $this->belongsTo(Edas::class, 'id_edas', 'id');
+    }
 }

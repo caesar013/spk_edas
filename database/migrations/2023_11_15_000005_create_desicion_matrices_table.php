@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('desicion_matrices', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_edas');
+            $table->foreign('id_edas')->references('id')->on('edas')->onDelete('cascade');
             $table->unsignedBigInteger('id_criteria');
             $table->foreign('id_criteria')->references('id')->on('criterias')->onDelete('cascade');
             $table->unsignedBigInteger('id_alternative');

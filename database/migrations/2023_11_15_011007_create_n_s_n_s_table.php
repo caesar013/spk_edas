@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('n_s_n_s', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_edas');
+            $table->foreign('id_edas')->references('id')->on('edas')->onDelete('cascade');
             $table->unsignedBigInteger('id_alternative');
             $table->foreign('id_alternative')->references('id')->on('alternatives')->onDelete('cascade');
             $table->decimal('value', 8, 2);
