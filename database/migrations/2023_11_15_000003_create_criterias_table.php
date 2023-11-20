@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_edas');
             $table->foreign('id_edas')->references('id')->on('edas')->onDelete('cascade');
-            $table->string('code');
+            $table->integer('code');
             $table->string('name');
             $table->string('weight');
             $table->boolean('type')->default(true); // false = cost, true = benefit
