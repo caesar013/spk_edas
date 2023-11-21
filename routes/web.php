@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\EdasController;
 use App\Http\Controllers\AlternativeController;
+use App\Http\Controllers\DecisionMatrixController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,15 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
 
     Route::resource('edas', EdasController::class);
 
-    Route::resource('criteria', CriteriaController::class);
+    Route::resource('criteria', CriteriaController::class)->except(['index']);
 
-    Route::resource('alternative', AlternativeController::class);
+    Route::get('/criteria/data/{id_edas}', [CriteriaController::class, 'fetchData'])->name('fetchDataCriteria');
+
+    Route::resource('alternative', AlternativeController::class)->except(['index']);
+
+    Route::get('/alternative/data', [AlternativeController::class, 'fetchData'])->name('fetchDataAlternative');
+
+    Route::resource('decisionmatrix', DecisionMatrixController::class)->except(['index']);
+
+    Route::get('/decisionmatrix/data', [DecisionMatrixController::class, 'fetchData'])->name('fetchDataDecisionMatrix');
 });

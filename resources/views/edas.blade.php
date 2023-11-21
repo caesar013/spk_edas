@@ -142,10 +142,11 @@
                     </tr>`);
                 } else {
                     $.each(data.edas, function(foo, bar) {
+                        var url_criteria = "/dashboard/criteria/"+bar.id;
                         $('tbody').append(`
                             <tr>
                                 <td>` + (foo+1) + `</td>
-                                <td><a class="nav-link" href="">` + bar.name + `</a></td>
+                                <td><a class='nav nav-link' href= "`+url_criteria+`">` + bar.name + `</a></td>
                                 <td>` + bar.criterias_count + `</td>
                                 <td>` + bar.alternatives_count + `</td>
                                 <td>
@@ -199,9 +200,8 @@
                     }
                 });
             });
-    });
-
-    $(document).on('click', '.delete_edas', function(e) {
+            
+            $(document).on('click', '.delete_edas', function(e) {
                 e.preventDefault();
                 let id_edas = $(this).val();
                 $('#delete_id').val(id_edas);
@@ -231,9 +231,9 @@
                         }
                     }
                 });
-    });
-
-    $(document).on('click', '.edit_edas', function(e) {
+            });
+            
+            $(document).on('click', '.edit_edas', function(e) {
                 e.preventDefault();
                 let id_edas = $(this).val();
                 $("#modal_edit_edasLabel").html('Edit EDAS');
@@ -254,9 +254,9 @@
                         }
                     }
                 });
-    });
+            });
 
-    $(document).on('click', '.update_edas', function(e) {
+            $(document).on('click', '.update_edas', function(e) {
                 e.preventDefault();
 
                 let id_edas = $("#id_edit").val();
@@ -287,5 +287,6 @@
                     }
                 });
             });
+        });
 </script>
 @endsection
