@@ -35,9 +35,9 @@ class CriteriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Criteria $criteria)
+    public function show($id_criteria)
     {
-        //
+        return view('criteria');
     }
 
     /**

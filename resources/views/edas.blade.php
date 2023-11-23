@@ -142,10 +142,11 @@
                     </tr>`);
                 } else {
                     $.each(data.edas, function(foo, bar) {
+                        var url_criteria = "/dashboard/criteria/"+bar.id;
                         $('tbody').append(`
                             <tr>
                                 <td>` + (foo+1) + `</td>
-                                <td><a class="nav-link" href="">` + bar.name + `</a></td>
+                                <td><a class="nav-link" href="`+ url_criteria +`">` + bar.name + `</a></td>
                                 <td>` + bar.criterias_count + `</td>
                                 <td>` + bar.alternatives_count + `</td>
                                 <td>
