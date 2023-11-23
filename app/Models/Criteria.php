@@ -40,4 +40,9 @@ class Criteria extends Model
     {
         return $this->hasMany(NDA::class, 'id_criteria', 'id');
     }
+
+    public function subcriterias()
+    {
+        return $this->hasMany(Subcriteria::class, 'id_criteria', 'id');
+    }
 }

@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('decision_matrices', function (Blueprint $table) {
+        Schema::create('subcriterias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_edas');
-            $table->foreign('id_edas')->references('id')->on('edas')->onDelete('cascade');
             $table->unsignedBigInteger('id_criteria');
             $table->foreign('id_criteria')->references('id')->on('criterias')->onDelete('cascade');
-            $table->unsignedBigInteger('id_alternative');
-            $table->foreign('id_alternative')->references('id')->on('alternatives')->onDelete('cascade');
-            $table->unsignedBigInteger('id_subcriteria');
-            $table->foreign('id_subcriteria')->references('id')->on('subcriterias');
+            $table->unsignedBigInteger('id_edas');
+            $table->foreign('id_edas')->references('id')->on('edas')->onDelete('cascade');
+            $table->decimal('value', 8, 2);
+            $table->string('information');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('decision_matrices');
+        Schema::dropIfExists('subcriterias');
     }
 };
