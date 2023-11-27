@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('id_criteria')->references('id')->on('criterias')->onDelete('cascade');
             $table->unsignedBigInteger('id_alternative');
             $table->foreign('id_alternative')->references('id')->on('alternatives')->onDelete('cascade');
-            $table->unsignedBigInteger('id_subcriteria');
+            $table->unsignedBigInteger('id_subcriteria')->nullable();
             $table->foreign('id_subcriteria')->references('id')->on('subcriterias');
             $table->timestamps();
         });

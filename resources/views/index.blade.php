@@ -58,24 +58,21 @@
         url: "{{ route('dashboard.fetchDataIndex') }}",
         dataType: "json",
         success: function(data) {
-            if (data.edas.length == 0) {
+            if (data.edas_count == 0) {
                 $('#edas_count').text('-');
             } else {
-                $('#edas_count').text(data.edas.length);
+                $('#edas_count').text(data.edas_count);
             }
-            if (data.edas.criteria_count == null) {
+            if (data.criterias_count == 0) {
                 $('#criteria_count').text('-');
             } else {
-                $('#criteria_count').text(data.edas.criteria_count);
+                $('#criteria_count').text(data.criterias_count);
             }
-            if (data.edas.alternative_count == null) {
+            if (data.alternatives_count == 0) {
                 $('#alternative_count').text('-');
             } else {
-                $('#alternative_count').text(data.edas.alternative_count);
+                $('#alternative_count').text(data.alternatives_count);
             }
-            console.log();
-            console.log(data.edas.criteria_count);
-            console.log(data.edas.alternative_count);
         }
     });
 }

@@ -142,23 +142,35 @@
 
 @section('js')
 <script>
-    var edas = @json($edas);
-    var criteria = @json($criterias);
+    var id_edas = @json($edas->id);
+    var criterias = @json($criterias);
 
     document.addEventListener('DOMContentLoaded', function() {
-        $('#href_criteria').href = "{{ route('dashboard.criteria.show', ["+edas.id+"]) }}";
-        $('#href_alternative').href = "{{ route('dashboard.alternative.show', ["+edas.id+"]) }}";
-        $('#href_matrix').href = "{{ route('dashboard.decisionmatrix.show', ["+edas.id+"]) }}";
 
-        $('#id_edas').val(edas.id);
+    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+""); 
+    $('#href_alternative').attr('href' , "/dashboard/alternative/"+id_edas+ "");
+    $('#href_matrix').attr('href' , "/dashboard/decisionmatrix/"+id_edas+ "");
 
-        if (criteria.length==0) {
+    $('#href_average').attr('href' , "/dashboard/average/"+id_edas+ "");
+    $('#href_pda').attr('href' , "/dashboard/pda/"+id_edas+ "");
+    $('#href_nda').attr('href' , "/dashboard/nda/"+id_edas+ "");
+    $('#href_sp').attr('href' , "/dashboard/sp/"+id_edas+ "");
+    $('#href_sn').attr('href' , "/dashboard/sn/"+id_edas+ "");
+    $('#href_nsp').attr('href' , "/dashboard/nsp/"+id_edas+ "");
+    $('#href_nsn').attr('href' , "/dashboard/nsn/"+id_edas+ "");
+    $('#href_apraisalscore').attr('href' , "/dashboard/apraisalscore/"+id_edas+ "");
+
+    $('#href_result').attr('href' , "/dashboard/result/"+id_edas+ "");
+
+        $('#id_edas').val(id_edas);
+
+        if (criterias.length==0) {
                     $('tbody').append(`
                     <tr>
                         <td colspan="5" class="text-center"> No Criteria tracked. Try creating one.</td>
                     </tr>`);
         } else {
-            $.each(criteria, function(foo, bar) {
+            $.each(criterias, function(foo, bar) {
                 $('tbody').append(`
                     <tr>
                         <td> C` + (foo+1) + `</td>
@@ -181,7 +193,7 @@
     function fetch() {
         $.ajax({
             type: "GET",
-            url: "/dashboard/criteria/data/"+ edas.id,
+            url: "/dashboard/criteria/data/"+ id_edas,
             dataType: "json",
             success: function(data) {
                 $('#errorAdd').html("");

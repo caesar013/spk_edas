@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Edas;
 use App\Http\Requests\UpdateEdasRequest;
+use App\Models\Alternative;
+use App\Models\Criteria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -134,12 +136,22 @@ class EdasController extends Controller
 
     public function fetchData()
     {
+        $edas = Edas::where('id_user', '=', Auth::user()->id)->get();
+
         return response()->json([
-            'edas' => Edas::with(['criterias' => function ($query) {
-                $query->selectRaw('id_edas, count(*) as criteria_count')->groupBy('id_edas');
-            }, 'alternatives' => function ($query) {
-                $query->selectRaw('id_edas, count(*) as alternative_count')->groupBy('id_edas');
-            }])->where('id_user', '=', Auth::id())->get()
+            'edas_count' => count($edas),
+            'criterias_count' => count(Criteria::where('id_edas', '=', $edas->first()->id)->get()),
+            'alternatives_count' => count(Alternative::where('id_edas', '=', $edas->first()->id)->get()),
+        ]);
+    }
+
+    public function fetchEdas()
+    {
+        $edas = Edas::where('id_user', '=', Auth::user()->id)->get()->loadCount(['criterias', 'alternatives']);
+
+        return response()->json([
+            'edas' => $edas,
+            'edas_count' => count($edas),
         ]);
     }
 }
