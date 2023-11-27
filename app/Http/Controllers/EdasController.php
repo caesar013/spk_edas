@@ -137,13 +137,22 @@ class EdasController extends Controller
     public function fetchData()
     {
         $edas = Edas::where('id_user', '=', Auth::user()->id)->get();
+        $edas_count = count($edas);
+        if ($edas_count > 0) {
+            $criterias_count = count(Criteria::where('id_edas', '=', $edas->first()->id)->get());
+            $alternatives_count = count(Alternative::where('id_edas', '=', $edas->first()->id)->get());
+        } else {
+            $criterias_count = 0;
+            $alternatives_count = 0;
+        }
 
         return response()->json([
-            'edas_count' => count($edas),
-            'criterias_count' => count(Criteria::where('id_edas', '=', $edas->first()->id)->get()),
-            'alternatives_count' => count(Alternative::where('id_edas', '=', $edas->first()->id)->get()),
+            'edas_count' => $edas_count,
+            'criterias_count' => $criterias_count,
+            'alternatives_count' => $alternatives_count,
         ]);
     }
+
 
     public function fetchEdas()
     {
