@@ -34,6 +34,7 @@ class SubcriteriaController extends Controller
     public function store(Request $request)
     {
         $rules = [
+            'id_edas' => 'required|integer|exists:edas,id',
             'id_criteria' => 'required|integer|exists:criterias,id',
             'value' => 'required|numeric',
             'information' => 'required|string|max:50',

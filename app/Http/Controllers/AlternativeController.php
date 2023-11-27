@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Alternative;
 use App\Http\Requests\StoreAlternativeRequest;
 use App\Http\Requests\UpdateAlternativeRequest;
+use App\Models\Criteria;
+use App\Models\Edas;
 
 class AlternativeController extends Controller
 {
@@ -35,9 +37,14 @@ class AlternativeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Alternative $alternative)
+    public function show($id_edas)
     {
-        //
+        $alternatives = Alternative::where('id_edas', $id_edas)->get();
+        $criteria = Criteria::where('id_edas', $id_edas)->get();
+        $edas = Edas::find($id_edas)->first();
+        $status_criteria = $criteria->count() > 0 ? true : false;
+        $status_subcriteria = $criteria->where('type', 'subcriteria')->count() > 0 ? true : false;
+        dd($status_criteria, $status_subcriteria);
     }
 
     /**

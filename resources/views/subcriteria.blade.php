@@ -48,6 +48,7 @@
             <div class="modal-body">
                 <div id="errorAdd"></div>
                 <div class="form-group mb-3">
+                    <input type="hidden" id="id_edas" value="">
                     <input type="hidden" id="id_criteria" value="">
                     <label for="information">Keterangan Sub-Kriteria</label>
                     <input type="text" class="information form-control" id="information"
@@ -109,6 +110,7 @@
                 <div id="errorEdit"></div>
                 <div class="form-group mb-3">
                     <input type="hidden" id="id_edit">
+                    <input type="hidden" id="id_edas_edit">
                     <input type="hidden" id="id_criteria_edit">
                     <label for="information">Keterangan</label>
                     <input type="text" class="information form-control" id="information_edit"
@@ -155,6 +157,7 @@
     $('#table-title').html('Sub-Criteria of ' + "{{ $criteria->name }}" + ' Criteria');
 
     $('#id_criteria').val(id_criteria);
+    $('#id_edas').val(id_edas);
 
         if (subcriterias.length==0) {
                     $('tbody').append(`
@@ -293,6 +296,7 @@
                     success: function(response) {
                         if (response.status) {
                             $('#id_edit').val(response.subcriteria.id);
+                            $('#id_edas_edit').val(response.subcriteria.id_edas);
                             $('#id_criteria_edit').val(response.subcriteria.id_criteria);
                             $('#information_edit').val(response.subcriteria.information);
                             $('#value_edit').val(response.subcriteria.value);
@@ -312,6 +316,7 @@
 
                 let data = {
                     'id' : $('#id_edit').val(),
+                    'id_edas': $('#id_edas_edit').val(),
                     'id_criteria': $('#id_criteria_edit').val(),
                     'information': $('#information_edit').val(),
                     'value': $('#value_edit').val(),

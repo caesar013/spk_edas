@@ -10,6 +10,7 @@ class Subcriteria extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_edas',
         'id_criteria',
         'value',
         'information',
@@ -23,5 +24,10 @@ class Subcriteria extends Model
     public function decisionmatrices()
     {
         return $this->hasMany(DecisionMatrix::class, 'id_subcriteria', 'id');
+    }
+
+    public function edas()
+    {
+        return $this->belongsTo(Edas::class, 'id_edas', 'id');
     }
 }
