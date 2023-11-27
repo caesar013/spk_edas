@@ -40,7 +40,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
 
     Route::get('/edas/data', [EdasController::class, 'fetchEdas'])->name('fetchDataEdas');
 
-    Route::resource('edas', EdasController::class);
+    Route::resource('edas', EdasController::class)->except(['show', 'create']);
 
     Route::resource('criteria', CriteriaController::class)->except(['index', 'create']);
 
@@ -57,4 +57,8 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::resource('subcriteria', SubcriteriaController::class)->except(['index', 'create']);
 
     Route::get('/subcriteria/data/{id_edas}', [SubcriteriaController::class, 'fetchData'])->name('fetchDataSubcriteria');
+
+    Route::resource('alternative', AlternativeController::class)->except(['index', 'create']);
+
+    Route::get('/alternative/data/{id_edas}', [AlternativeController::class, 'fetchData'])->name('fetchDataAlternative');
 });
