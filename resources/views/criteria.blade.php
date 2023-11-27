@@ -23,6 +23,7 @@
                                 <th>Nama Kriteria</th>
                                 <th>Bobot</th>
                                 <th>Tipe</th>
+                                <th>Sub-Kriteria</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -179,6 +180,7 @@
                         <td>` + bar.name + `</td>
                         <td>` + bar.weight + `</td>
                         <td> {{` + bar.type + ` ? 'Benefit' : 'Cost' }} </td>
+                        <td> ` + bar.subcriterias_count + ` </td>
                         <td>
                                 <button type="button" class="subcriteria btn btn-secondary btn-sm" value="` + 
                             bar.id + `">Subcriteria</button>
@@ -215,6 +217,7 @@
                                 <td>` + bar.name + `</td>
                                 <td>` + bar.weight + `</td>
                                 <td> {{` + bar.type + ` ? 'Benefit' : 'Cost' }} </td>
+                                <td> {{` + bar.subcriterias_count + ` != 0 ? ` + bar.subcriterias_count + ` : '0'}} </td>
                                 <td>
                                         <button type="button" class="subcriteria btn btn-secondary btn-sm" value="` + 
                                     bar.id + `">Subcriteria</button>
@@ -259,6 +262,7 @@
                             $('#add_criteria_modal').modal('hide');
                         } else {
                             $('#errorAdd').addClass('alert alert-danger');
+                            $('#errorAdd').html("");
                             for (const [key, value] of Object.entries(response.error)) {
                                 $('#errorAdd').append(`<li>` + value + `</li>`);
                             }

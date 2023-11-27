@@ -37,7 +37,15 @@ class CriteriaController extends Controller
             'type' => 'required|string|max:50',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $messages =
+            [
+                'required' => 'The :attribute field is required.',
+                'integer' => 'The :attribute must be an integer.',
+                'numeric' => 'The :attribute must be a number.',
+                'max' => 'The :attribute must be less than :max.',
+            ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
@@ -58,12 +66,10 @@ class CriteriaController extends Controller
      */
     public function show($id_edas)
     {
-        $criterias = Criteria::where('id_edas', $id_edas)->get();
+        $criterias = Criteria::where('id_edas', $id_edas)->get()->loadCount('subcriterias');
         $edas = Edas::where('id', $id_edas)->first();
 
-        $isEmpty = $criterias->isEmpty();
-
-        return view('criteria', compact(['criterias', 'edas', 'isEmpty']));
+        return view('criteria', compact(['criterias', 'edas']));
     }
 
     /**
@@ -95,10 +101,17 @@ class CriteriaController extends Controller
                 'id_edas' => 'required|integer|exists:edas,id',
                 'name' => 'required|string|max:50',
                 'weight' => 'required|numeric',
-                'type' => 'required|string|max:50',
+                'type' => 'required',
             ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $messages =
+            [
+                'required' => 'The :attribute field is required.',
+                'numeric' => 'The :attribute must be a number.',
+                'max' => 'The :attribute must be less than :max.',
+            ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
             return response()->json([
@@ -145,7 +158,7 @@ class CriteriaController extends Controller
 
     public function fetchData($id_edas)
     {
-        $criterias = Criteria::where('id_edas', $id_edas)->get();
+        $criterias = Criteria::where('id_edas', $id_edas)->get()->loadCount('subcriterias');
         return response()->json([
             'criterias' => $criterias
         ]);

@@ -194,6 +194,7 @@
                             fetch();
                             $('#add_edas_modal').modal('hide');
                         } else {
+                            $('#errorAdd').html("");
                             $('#errorAdd').addClass('alert alert-danger');
                             for (const [key, value] of Object.entries(response.error)) {
                                 $('#errorAdd').append(`<li>` + value + `</li>`);
