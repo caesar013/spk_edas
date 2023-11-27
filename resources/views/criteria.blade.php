@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-6"><b>Kriteria</b></div>
+                        <div class="col-md-6 table-title"><b>Kriteria</b></div>
                         <div class="col-md-6 d-flex justify-content-end"><button type="button" href=""
                                 class=" btn btn-primary" data-toggle="modal" data-target="#add_criteria_modal">
                                 + Tambah Kriteria
@@ -147,6 +147,8 @@
 
     document.addEventListener('DOMContentLoaded', function() {
 
+    $('.table-title').html('<b>Kriteria for ' + "{{ $edas->name }}<b>");
+
     $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+""); 
     $('#href_alternative').attr('href' , "/dashboard/alternative/"+id_edas+ "");
     $('#href_matrix').attr('href' , "/dashboard/decisionmatrix/"+id_edas+ "");
@@ -239,7 +241,6 @@
                 e.preventDefault();
                 var criteria = {
                     'id_edas': $('#id_edas').val(),
-                    'code': $('#code').val(),
                     'name': $('#name').val(),
                     'weight': $('#weight').val(),
                     'type': $('#type').val(),
@@ -258,7 +259,9 @@
                             $('#add_criteria_modal').modal('hide');
                         } else {
                             $('#errorAdd').addClass('alert alert-danger');
-                            $('#errorAdd').text(response.error);
+                            for (const [key, value] of Object.entries(response.error)) {
+                                $('#errorAdd').append(`<li>` + value + `</li>`);
+                            }
                         }
                     }
                 });
@@ -289,7 +292,9 @@
                         } else {
                             $('#success').html("");
                             $('#success').addClass('alert alert-danger');
-                            $('#success').text(res.error);
+                            for (const [key, value] of Object.entries(response.error)) {
+                                $('#success').append(`<li>` + value + `</li>`);
+                            }
                             $('#modal_delete_criteria').modal('hide');
                         }
                     }
@@ -315,7 +320,9 @@
                         } else {
                             $('#success').html('');
                             $('#success').addClass('alert alert-danger');
-                            $('#success').text(response.error);
+                            for (const [key, value] of Object.entries(response.error)) {
+                                $('#success').append(`<li>` + value + `</li>`);
+                            }
                         }
                     }
                 });
@@ -349,7 +356,9 @@
                         } else {
                             $('#errorEdit').html('');
                             $('#errorEdit').addClass('alert alert-danger');
-                            $('#errorEdit').text(res.error);
+                            for (const [key, value] of Object.entries(response.error)) {
+                                $('#errorEdit').append(`<li>` + value + `</li>`);
+                            }
                         }
                     }
                 });
