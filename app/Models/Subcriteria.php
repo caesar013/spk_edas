@@ -11,7 +11,6 @@ class Subcriteria extends Model
 
     protected $fillable = [
         'id_criteria',
-        'id_edas',
         'value',
         'information',
     ];
@@ -19,11 +18,6 @@ class Subcriteria extends Model
     public function criteria()
     {
         return $this->belongsTo(Criteria::class, 'id_criteria', 'id');
-    }
-
-    public function edas()
-    {
-        return $this->belongsTo(Edas::class, 'id_edas', 'id');
     }
 
     public function decisionmatrices()

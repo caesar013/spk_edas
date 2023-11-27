@@ -73,9 +73,4 @@ class Edas extends Model
     {
         return $this->hasMany(Sp::class, 'id_edas', 'id');
     }
-
-    public function subcriterias()
-    {
-        return $this->hasMany(Subcriteria::class, 'id_edas', 'id');
-    }
 }

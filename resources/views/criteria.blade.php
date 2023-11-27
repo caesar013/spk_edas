@@ -166,6 +166,8 @@
                         <td>` + bar.weight + `</td>
                         <td> {{` + bar.type + ` ? 'Benefit' : 'Cost' }} </td>
                         <td>
+                                <button type="button" class="subcriteria btn btn-secondary btn-sm" value="` + 
+                            bar.id + `">Subcriteria</button>
                                 <button type="button" class="edit_criteria btn btn-primary btn-sm" value="` +
                             bar.id + `">Edit</button>
                                 <button type="button" class="delete_criteria btn btn-danger btn-sm" value="` +
@@ -182,6 +184,8 @@
             url: "/dashboard/criteria/data/"+ edas.id,
             dataType: "json",
             success: function(data) {
+                $('#errorAdd').html("");
+                $('#errorEdit').html("");
                 $('#modal_add_criteriaLabel').html('Add Criteria');
                 $('tbody').html("");
                 if (data.criterias.length==0) {
@@ -198,6 +202,8 @@
                                 <td>` + bar.weight + `</td>
                                 <td> {{` + bar.type + ` ? 'Benefit' : 'Cost' }} </td>
                                 <td>
+                                        <button type="button" class="subcriteria btn btn-secondary btn-sm" value="` + 
+                                    bar.id + `">Subcriteria</button>
                                         <button type="button" class="edit_criteria btn btn-primary btn-sm" value="` +
                                     bar.id + `">Edit</button>
                                         <button type="button" class="delete_criteria btn btn-danger btn-sm" value="` +
@@ -335,6 +341,12 @@
                         }
                     }
                 });
+            });
+
+            $(document).on('click', '.subcriteria', function(e) {
+                e.preventDefault();
+                let id_criteria = $(this).val();
+                window.location.href = "/dashboard/subcriteria/" + id_criteria;
             });
         });
 </script>

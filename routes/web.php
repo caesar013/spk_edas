@@ -7,6 +7,7 @@ use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\EdasController;
 use App\Http\Controllers\AlternativeController;
 use App\Http\Controllers\DecisionMatrixController;
+use App\Http\Controllers\SubcriteriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,15 +42,19 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
 
     Route::resource('edas', EdasController::class);
 
-    Route::resource('criteria', CriteriaController::class)->except(['index']);
+    Route::resource('criteria', CriteriaController::class)->except(['index', 'create']);
 
     Route::get('/criteria/data/{id_edas}', [CriteriaController::class, 'fetchData'])->name('fetchDataCriteria');
 
-    Route::resource('alternative', AlternativeController::class)->except(['index']);
+    Route::resource('alternative', AlternativeController::class)->except(['index', 'create']);
 
     Route::get('/alternative/data', [AlternativeController::class, 'fetchData'])->name('fetchDataAlternative');
 
-    Route::resource('decisionmatrix', DecisionMatrixController::class)->except(['index']);
+    Route::resource('decisionmatrix', DecisionMatrixController::class)->except(['index', 'create']);
 
     Route::get('/decisionmatrix/data', [DecisionMatrixController::class, 'fetchData'])->name('fetchDataDecisionMatrix');
+
+    Route::resource('subcriteria', SubcriteriaController::class)->except(['index', 'create']);
+
+    Route::get('/subcriteria/data/{id_edas}', [CriteriaController::class, 'fetchData'])->name('fetchDataSubcriteria');
 });
