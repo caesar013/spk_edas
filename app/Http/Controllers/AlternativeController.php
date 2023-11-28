@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alternative;
-use App\Http\Requests\StoreAlternativeRequest;
-use App\Http\Requests\UpdateAlternativeRequest;
 use App\Models\Criteria;
 use App\Models\Edas;
 use App\Models\Subcriteria;
@@ -53,6 +51,14 @@ class AlternativeController extends Controller
             ]);
         } else {
             $alternative = Alternative::create($validator->validated());
+            // get all criterias
+            $criterias = Criteria::where('id_edas', intval($validator->validated()['id_edas']))->get();
+            // foreach alternative
+            dd($criterias);
+            foreach ($criterias as $foo => $bar) {
+                // create decisionmatrix using alternatives and criterias
+
+            }
             return response()->json([
                 'status' => true,
                 'message' => ($alternative) ? 'Alternative added successfully' : "Failed"
@@ -67,7 +73,7 @@ class AlternativeController extends Controller
     {
         $alternatives = Alternative::where('id_edas', $id_edas)->get();
         $criterias = Criteria::where('id_edas', $id_edas)->get();
-        $edas = Edas::find($id_edas)->first();
+        $edas = Edas::where('id', $id_edas)->first();
         $status_criteria = $criterias->count() > 0 ? true : false;
         $status_subcriteria = $criterias->count() == Subcriteria::where('id_edas', $id_edas)->get()->groupBy('id_criteria')->count() ? true : false;
         return view('alternative', compact('alternatives', 'edas', 'status_criteria', 'status_subcriteria'));
