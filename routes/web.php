@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\EdasController;
 use App\Http\Controllers\AlternativeController;
+use App\Http\Controllers\AverageController;
 use App\Http\Controllers\DecisionMatrixController;
 use App\Http\Controllers\SubcriteriaController;
 
@@ -52,7 +53,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
 
     Route::resource('decisionmatrix', DecisionMatrixController::class)->except(['index', 'create']);
 
-    Route::get('/decisionmatrix/data', [DecisionMatrixController::class, 'fetchData'])->name('fetchDataDecisionMatrix');
+    Route::get('/decisionmatrix/data/{id_edas}', [DecisionMatrixController::class, 'fetchData'])->name('fetchDataDecisionMatrix');
 
     Route::resource('subcriteria', SubcriteriaController::class)->except(['index', 'create']);
 
@@ -61,4 +62,6 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::resource('alternative', AlternativeController::class)->except(['index', 'create']);
 
     Route::get('/alternative/data/{id_edas}', [AlternativeController::class, 'fetchData'])->name('fetchDataAlternative');
+
+    Route::get('/average/{id_edas}', [AverageController::class, 'show'])->name('average.show');
 });
