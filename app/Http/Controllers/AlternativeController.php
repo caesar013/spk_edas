@@ -51,14 +51,6 @@ class AlternativeController extends Controller
             ]);
         } else {
             $alternative = Alternative::create($validator->validated());
-            // get all criterias
-            $criterias = Criteria::where('id_edas', intval($validator->validated()['id_edas']))->get();
-            // foreach alternative
-            dd($criterias);
-            foreach ($criterias as $foo => $bar) {
-                // create decisionmatrix using alternatives and criterias
-
-            }
             return response()->json([
                 'status' => true,
                 'message' => ($alternative) ? 'Alternative added successfully' : "Failed"
@@ -124,7 +116,8 @@ class AlternativeController extends Controller
             $alternative = Alternative::where('id', $id_alternative)->update($validator->validated());
             return response()->json([
                 'status' => true,
-                'message' => ($alternative) ? 'Alternative updated successfully' : "Failed"
+                'message' => ($alternative) ? 'Alternative updated successfully' : "Failed",
+                'data' => $request->all()
             ]);
         }
     }

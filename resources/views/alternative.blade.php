@@ -106,7 +106,7 @@
                 <div class="form-group mb-3">
                     <input type="hidden" id="id_edit">
                     <input type="hidden" id="id_edas_edit">
-                    <label for="name">Nama Kriteria</label>
+                    <label for="name">Nama Alternatif</label>
                     <input type="text" class="name form-control" id="name_edit" value="{{ old('name') }}" required>
                 </div>
             </div>
@@ -297,7 +297,7 @@
             $(document).on('click', '.edit_alternative', function(e) {
                 e.preventDefault();
                 let id_alternative = $(this).val();
-                $("#modal_edit_alternativeLabel").html('Edit Criteria');
+                $("#modal_edit_alternativeLabel").html('Edit Alternatif');
                 $('#modal_edit_alternative').modal('show');
                 let editUrl = "/dashboard/alternative/" + id_alternative + "/edit";
                 $.ajax({
