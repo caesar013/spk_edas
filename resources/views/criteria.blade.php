@@ -217,7 +217,7 @@
                                 <td>` + bar.name + `</td>
                                 <td>` + bar.weight + `</td>
                                 <td> {{` + bar.type + ` ? 'Benefit' : 'Cost' }} </td>
-                                <td> {{` + bar.subcriterias_count + ` != 0 ? ` + bar.subcriterias_count + ` : '0'}} </td>
+                                <td>  `+ bar.subcriterias_count + ` </td>
                                 <td>
                                         <button type="button" class="subcriteria btn btn-secondary btn-sm" value="` + 
                                     bar.id + `">Subcriteria</button>
