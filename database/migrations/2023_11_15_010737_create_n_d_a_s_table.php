@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_edas');
             $table->foreign('id_edas')->references('id')->on('edas')->onDelete('cascade');
             $table->unsignedBigInteger('id_criteria');
-            $table->foreign('id_criteria')->references('id')->on('criterias');
+            $table->foreign('id_criteria')->references('id')->on('criterias')->onDelete('cascade');
             $table->unsignedBigInteger('id_alternative');
-            $table->foreign('id_alternative')->references('id')->on('alternatives');
+            $table->foreign('id_alternative')->references('id')->on('alternatives')->onDelete('cascade');
             $table->decimal('value', 8, 2)->nullable();
             $table->timestamps();
         });
