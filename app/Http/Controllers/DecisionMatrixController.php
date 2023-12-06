@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DecisionMatrixUpdated;
 use App\Models\DecisionMatrix;
 use App\Http\Requests\StoreDecisionMatrixRequest;
 use App\Http\Requests\UpdateDecisionMatrixRequest;
@@ -85,8 +86,12 @@ class DecisionMatrixController extends Controller
         $data = $request->all();
         $validator = [];
         foreach ($data as $key => $value) {
+            if ($value['id_subcriteria'] == 0) {
+                continue;
+            }
             $validator[$key] = Validator::make($value, $rules, $messages);
             if ($validator[$key]->fails()) {
+                dd($validator[$key]->messages(), $key, $value);
                 return response()->json([
                     'status' => false,
                     'error' => $validator[$key]->messages()
@@ -103,6 +108,12 @@ class DecisionMatrixController extends Controller
                     ]
                 );
             }
+        }
+        $dms = DecisionMatrix::where('id_edas', $id_edas)->get();
+        $criterias = Criteria::where('id_edas', $id_edas)->get();
+        $alternatives = Alternative::where('id_edas', $id_edas)->get();
+        if ($dms->count() == $criterias->count() * $alternatives->count()) {
+            event(new DecisionMatrixUpdated($dms, $criterias, $alternatives));
         }
         return response()->json([
             'status' => true,

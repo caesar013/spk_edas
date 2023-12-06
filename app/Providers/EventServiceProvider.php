@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\DecisionMatrixUpdated;
+use App\Listeners\UpdateApraisalScroreTable;
+use App\Listeners\UpdateAverageTable;
+use App\Listeners\UpdateNSPNSNTable;
+use App\Listeners\UpdatePDANDATable;
+use App\Listeners\UpdateSPSNTable;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +23,13 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        DecisionMatrixUpdated::class => [
+            UpdateAverageTable::class,
+            UpdatePDANDATable::class,
+            UpdateSPSNTable::class,
+            UpdateNSPNSNTable::class,
+            UpdateApraisalScroreTable::class,
         ],
     ];
 
