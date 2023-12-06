@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ApraisalScore;
 use App\Http\Requests\StoreApraisalScoreRequest;
 use App\Http\Requests\UpdateApraisalScoreRequest;
+use App\Models\Alternative;
+use App\Models\Edas;
 
 class ApraisalScoreController extends Controller
 {
@@ -35,9 +37,13 @@ class ApraisalScoreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ApraisalScore $apraisalScore)
+    public function show($id_edas)
     {
-        //
+        $edas = Edas::where('id', $id_edas)->first();
+        $alternatives = Alternative::where('id_edas', $id_edas)->get();
+        $apraisalscores = ApraisalScore::where('id_edas', $id_edas)->get();
+
+        return view('apraisalscore', compact('edas', 'alternatives', 'apraisalscores'));
     }
 
     /**

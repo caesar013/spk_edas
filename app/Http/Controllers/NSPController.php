@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\NSP;
 use App\Http\Requests\StoreNSPRequest;
 use App\Http\Requests\UpdateNSPRequest;
+use App\Models\Edas;
 
 class NSPController extends Controller
 {
@@ -35,9 +36,12 @@ class NSPController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(NSP $nSP)
+    public function show($id_edas)
     {
-        //
+        $edas = Edas::where('id', $id_edas)->first();
+        $nsps = NSP::where('id_edas', $id_edas)->get();
+
+        return view('nsp', compact('edas', 'nsps'));
     }
 
     /**

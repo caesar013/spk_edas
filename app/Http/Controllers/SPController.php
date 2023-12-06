@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SP;
 use App\Http\Requests\StoreSPRequest;
 use App\Http\Requests\UpdateSPRequest;
+use App\Models\Edas;
 
 class SPController extends Controller
 {
@@ -35,9 +36,12 @@ class SPController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SP $sP)
+    public function show($id_edas)
     {
-        //
+        $edas = Edas::where('id', $id_edas)->first();
+        $sps = SP::where('id_edas', $id_edas)->get();
+
+        return view('sp', compact('edas', 'sps'));
     }
 
     /**

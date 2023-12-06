@@ -6,8 +6,15 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\EdasController;
 use App\Http\Controllers\AlternativeController;
+use App\Http\Controllers\ApraisalScoreController;
 use App\Http\Controllers\AverageController;
 use App\Http\Controllers\DecisionMatrixController;
+use App\Http\Controllers\NDAController;
+use App\Http\Controllers\NSNController;
+use App\Http\Controllers\NSPController;
+use App\Http\Controllers\PDAController;
+use App\Http\Controllers\SNController;
+use App\Http\Controllers\SPController;
 use App\Http\Controllers\SubcriteriaController;
 
 /*
@@ -64,4 +71,18 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::get('/alternative/data/{id_edas}', [AlternativeController::class, 'fetchData'])->name('fetchDataAlternative');
 
     Route::get('/average/{id_edas}', [AverageController::class, 'show'])->name('average.show');
+
+    Route::get('/pda/{id_edas}', [PDAController::class, 'show'])->name('pda.show');
+
+    Route::get('/nda/{id_edas}', [NDAController::class, 'show'])->name('nda.show');
+
+    Route::get('/sp/{id_edas}', [SPController::class, 'show'])->name('sp.show');
+
+    Route::get('/sn/{id_edas}', [SNController::class, 'show'])->name('sn.show');
+
+    Route::get('/nsp/{id_edas}', [NSPController::class, 'show'])->name('nsp.show');
+
+    Route::get('/nsn/{id_edas}', [NSNController::class, 'show'])->name('nsn.show');
+
+    Route::get('/apraisalscore/{id_edas}', [ApraisalScoreController::class, 'show'])->name('apraisalscore.show');
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SN;
 use App\Http\Requests\StoreSNRequest;
 use App\Http\Requests\UpdateSNRequest;
+use App\Models\Edas;
 
 class SNController extends Controller
 {
@@ -35,9 +36,12 @@ class SNController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SN $sN)
+    public function show($id_edas)
     {
-        //
+        $edas = Edas::where('id', $id_edas)->first();
+        $sns = SN::where('id_edas', $id_edas)->get();
+
+        return view('sn', compact('edas', 'sns'));
     }
 
     /**

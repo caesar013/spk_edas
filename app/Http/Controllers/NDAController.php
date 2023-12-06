@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\NDA;
 use App\Http\Requests\StoreNDARequest;
 use App\Http\Requests\UpdateNDARequest;
+use App\Models\Alternative;
+use App\Models\Criteria;
+use App\Models\Edas;
 
 class NDAController extends Controller
 {
@@ -35,9 +38,14 @@ class NDAController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(NDA $nDA)
+    public function show($id_edas)
     {
-        //
+        $edas = Edas::where('id', $id_edas)->first();
+        $ndas = NDA::where('id_edas', $id_edas)->get();
+        $criterias = Criteria::where('id_edas', $id_edas)->get();
+        $alternatives = Alternative::where('id_edas', $id_edas)->get();
+
+        return view('nda', compact(['edas', 'ndas', 'criterias', 'alternatives']));
     }
 
     /**

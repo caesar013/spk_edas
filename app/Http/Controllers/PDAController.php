@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\PDA;
 use App\Http\Requests\StorePDARequest;
 use App\Http\Requests\UpdatePDARequest;
+use App\Models\Alternative;
+use App\Models\Criteria;
+use App\Models\Edas;
 
 class PDAController extends Controller
 {
@@ -35,9 +38,14 @@ class PDAController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PDA $pDA)
+    public function show($id_edas)
     {
-        //
+        $edas = Edas::where('id', $id_edas)->first();
+        $pdas = PDA::where('id_edas', $id_edas)->get();
+        $criterias = Criteria::where('id_edas', $id_edas)->get();
+        $alternatives = Alternative::where('id_edas', $id_edas)->get();
+
+        return view('pda', compact(['edas', 'pdas', 'criterias', 'alternatives']));
     }
 
     /**
