@@ -145,8 +145,6 @@
     $('#href_nsn').attr('href' , "/dashboard/nsn/"+id_edas+ "");
     $('#href_apraisalscore').attr('href' , "/dashboard/apraisalscore/"+id_edas+ "");
 
-    $('#href_result').attr('href' , "/dashboard/result/"+id_edas+ "");
-
     $('.table-title').html('<b>Alternatif of ' + edas.name +'</b>');
 
     $('#id_edas').val(id_edas);

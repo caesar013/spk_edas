@@ -152,8 +152,6 @@
     $('#href_nsn').attr('href' , "/dashboard/nsn/"+id_edas+ "");
     $('#href_apraisalscore').attr('href' , "/dashboard/apraisalscore/"+id_edas+ "");
 
-    $('#href_result').attr('href' , "/dashboard/result/"+id_edas+ "");
-
     $('#table-title').html('Sub-Criteria of ' + "{{ $criteria->name }}" + ' Criteria');
 
     $('#id_criteria').val(id_criteria);

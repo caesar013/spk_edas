@@ -39,14 +39,13 @@
                         <a class="nav-link" id="href_sn" href="">SN</a>
                         <a class="nav-link" id="href_nsp" href="">NSP</a>
                         <a class="nav-link" id="href_nsn" href="">NSN</a>
-                        <a class="nav-link" id="href_apraisalscore" href="">Apraisal Score</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Result</div>
 
-                <a class="nav-link" id="href_result" href="">
+                <a class="nav-link" id="href_apraisalscore" href="">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Tables
+                    Apraisal Score
                 </a>
             </div>
         </div>

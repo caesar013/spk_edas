@@ -58,8 +58,6 @@
     $('#href_nsn').attr('href' , "/dashboard/nsn/"+id_edas+ "");
     $('#href_apraisalscore').attr('href' , "/dashboard/apraisalscore/"+id_edas+ "");
 
-    $('#href_result').attr('href' , "/dashboard/result/"+id_edas+ "");
-
     if (status_criteria == false) {
             $('#portal').html("");
             $('#portal').append(`<button type="button" class="btn btn-primary portal_button_criteria" value="`+id_edas+`">+ Tambah Kriteria</button>`);
