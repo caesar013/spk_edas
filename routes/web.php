@@ -16,6 +16,9 @@ use App\Http\Controllers\PDAController;
 use App\Http\Controllers\SNController;
 use App\Http\Controllers\SPController;
 use App\Http\Controllers\SubcriteriaController;
+use Illuminate\Routing\Route as IlluminateRoutingRoute;
+use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
+use Symfony\Component\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,4 +88,6 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::get('/nsn/{id_edas}', [NSNController::class, 'show'])->name('nsn.show');
 
     Route::get('/apraisalscore/{id_edas}', [ApraisalScoreController::class, 'show'])->name('apraisalscore.show');
+
+    Route::get('/journal', fn () => view('journal'))->name('journal');
 });

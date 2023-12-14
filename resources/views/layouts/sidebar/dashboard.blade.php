@@ -11,6 +11,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     EDAS
                 </a>
+                <a class="nav-link" href="{{ route('dashboard.journal') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Jurnal
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
