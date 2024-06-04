@@ -1,6 +1,14 @@
-@extends('layouts.sepuh')
+@extends('layouts.crud')
 
-@section('content')
+@section('title', 'Appraisal Score')
+
+@section('variable')
+@php
+$model = 'apraisalscore';
+@endphp
+@endsection
+
+@section('main')
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -37,7 +45,7 @@
     let id_edas = @json($edas->id);
     let alternatives = @json($alternatives);
     let apraisalscores = @json($apraisalscores);
-    let ap = [...apraisalscores]; 
+    let ap = [...apraisalscores];
     // clone so that the memory address won't be the same
     // this will affect which array we're going to rank on the next line
     let ranked = ap.sort((x,y) => y.value - x.value); // sort desc
@@ -46,7 +54,7 @@
 
     $('.table-title').html('<b>Apraisal Score for ' + "{{ $edas->name }}<b>");
 
-    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+""); 
+    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+"");
     $('#href_alternative').attr('href' , "/dashboard/alternative/"+id_edas+ "");
     $('#href_matrix').attr('href' , "/dashboard/decisionmatrix/"+id_edas+ "");
 
@@ -78,11 +86,11 @@
             })
         }
     });
-    
+
     function closeModal(idModal) {
         $("#" + idModal).modal('hide');
     }
-    
+
     function getAS(as)
     {
         return apraisalscores.findIndex(x => x.id == as.id) +1;

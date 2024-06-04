@@ -1,4 +1,6 @@
-@extends('layouts.sepuh')
+@extends('layouts.crud')
+
+@section('title', 'SN')
 
 @section('content')
 <div class="container mt-5">
@@ -39,7 +41,7 @@
 
     $('.table-title').html('<b>SN for ' + "{{ $edas->name }}<b>");
 
-    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+""); 
+    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+"");
     $('#href_alternative').attr('href' , "/dashboard/alternative/"+id_edas+ "");
     $('#href_matrix').attr('href' , "/dashboard/decisionmatrix/"+id_edas+ "");
 

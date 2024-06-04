@@ -1,6 +1,14 @@
-@extends('layouts.sepuh')
+@extends('layouts.crud')
 
-@section('content')
+@section('title', 'Decision Matrix')
+
+@section('variable')
+@php
+$model = 'decisionmatrix';
+@endphp
+@endsection
+
+@section('main')
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -45,7 +53,7 @@
 
     $('.table-title').html('<b>Matriks Keputusan for ' + "{{ $edas->name }}<b>");
 
-    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+""); 
+    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+"");
     $('#href_alternative').attr('href' , "/dashboard/alternative/"+id_edas+ "");
     $('#href_matrix').attr('href' , "/dashboard/decisionmatrix/"+id_edas+ "");
 
@@ -82,13 +90,13 @@
         } else {
             let head = '<tr><th>Alternatif</td>';
 
-                
+
             criterias.forEach(criteria => {
                 head += '<th>' + criteria.name + '</th>';
             });
-                
+
             head += '</tr>';
-                
+
             $('thead').append(head);
 
             let body = ``;
@@ -125,13 +133,13 @@
                 $('tbody').html("");
 
                 let head = '<tr><th>Alternatif</td>';
-                
+
                 data.criterias.forEach(criteria => {
                     head += '<th>' + criteria.name + '</th>';
                 });
-                    
+
                 head += '</tr>';
-                    
+
                 $('thead').append(head);
 
                 let body = ``;
@@ -176,14 +184,14 @@
         let dm = matrix.find(x => x.id_alternative == id_alternative && x.id_criteria == id_criteria) || null;
 
         if (dm == null) {
-            return null;    
+            return null;
         } else {
             return dm.id_subcriteria != null ? dm.id_subcriteria : null;
         }
     }
 
     $(document).ready(function() {
-            
+
         $(document).on('click', '.edit_decisionmatrix', function(e) {
             e.preventDefault();
             $('tbody').html("");
@@ -198,13 +206,13 @@
                     $('#portal').append(`<button type="button" class="btn btn-primary update_decisionmatrix" value="`+id_edas+`">Update Decision Matrix</button>`);
 
                     let head = '<tr><th>Alternatif</th>';
-                    
+
                     data.criterias.forEach(criteria => {
                         head += '<th>' + criteria.name + '</th>';
                     });
-                        
+
                     head += '</tr>';
-                        
+
                     $('thead').append(head);
 
                     let body = ``;
@@ -224,7 +232,7 @@
                                     body += `<option value="` + subcriteria.id + `" selected>` + subcriteria.information + `</option>`;
                                 } else {
                                     body += `<option value="` + subcriteria.id + `">` + subcriteria.information + `</option>`;
-                                    
+
                                 }
                             });
                             body += `</select></td>` ;
@@ -238,7 +246,7 @@
         });
 
             $(document).on('click', '.update_decisionmatrix', function(e) {
-                e.preventDefault(); 
+                e.preventDefault();
 
                 let input = [];
 
@@ -280,7 +288,7 @@
                             fetch();
                             closeModal('modal');
                         } else {
-                            
+
                             $('#success').html("");
                             $('#success').addClass('alert alert-danger');
                             for (const [key, value] of Object.entries(response.error)) {
@@ -291,7 +299,7 @@
                         }
                     }
                 });
-                
+
             });
 
             $(document).on('click', '.portal_button_criteria', function(e) {

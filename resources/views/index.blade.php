@@ -1,17 +1,18 @@
-@extends('layouts.sepuh')
+@extends('layouts.dashboard')
+
+@section('title', 'Dashboard')
 
 @section('content')
 <div class="container-fluid px-4">
     <h1 class="mt-4">Dashboard</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
     </ol>
     <div class="row justify-content-center">
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
                 <div class="row align-items-center p-3">
                     <div class="col-md-6">EDAS</div>
-                    <div class="col-md-6 d-flex justify-content-end" id="edas_count">Check your Ajax bitch</div>
+                    <div class="col-md-6 d-flex justify-content-end" id="edas_count">Ajax Error</div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="{{ route('dashboard.edas.index') }}">
@@ -24,7 +25,7 @@
             <div class="card bg-success text-white mb-4">
                 <div class="row align-items-center p-3">
                     <div class="col-md-6">Kriteria</div>
-                    <div class="col-md-6 d-flex justify-content-end" id="criteria_count">Check your Ajax bitch</div>
+                    <div class="col-md-6 d-flex justify-content-end" id="criteria_count">Ajax Error</div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="{{ route('dashboard.edas.index') }}">View
@@ -37,7 +38,7 @@
             <div class="card bg-success text-white mb-4">
                 <div class="row align-items-center p-3">
                     <div class="col-md-6">Alternatif</div>
-                    <div class="col-md-6 d-flex justify-content-end" id="alternative_count">Check your Ajax bitch</div>
+                    <div class="col-md-6 d-flex justify-content-end" id="alternative_count">Ajax Error</div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="{{ route('dashboard.edas.index') }}">View
@@ -77,7 +78,7 @@
     });
 }
     $(document).ready(function () {
-    
+
     fetch();
 
 

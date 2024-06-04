@@ -1,6 +1,8 @@
-@extends('layouts.sepuh')
+@extends('layouts.crud')
 
-@section('content')
+@section('title', 'SP')
+
+@section('main')
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -39,7 +41,7 @@
 
     $('.table-title').html('<b>SP for ' + "{{ $edas->name }}<b>");
 
-    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+""); 
+    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+"");
     $('#href_alternative').attr('href' , "/dashboard/alternative/"+id_edas+ "");
     $('#href_matrix').attr('href' , "/dashboard/decisionmatrix/"+id_edas+ "");
 

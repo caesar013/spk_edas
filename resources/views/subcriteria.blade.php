@@ -1,6 +1,14 @@
-@extends('layouts.sepuh')
+@extends('layouts.crud')
 
-@section('content')
+@section('title', 'Sub-Criteria')
+
+@section('variable')
+@php
+$model = 'subcriteria';
+@endphp
+@endsection
+
+@section('main')
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -34,101 +42,25 @@
     </div>
 </div>
 
-<!-- Add Sub-Criteria Modal -->
-<div class="modal fade" id="add_subcriteria_modal" tabindex="-1" role="dialog"
-    aria-labelledby="modal_add_subcriteriaLabel" aria-hidden="true" data-toggle="modal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal_add_subcriteriaLabel">Title</h5>
-                <button type="button" class="" aria-label="Close" data-dismiss='modal'>
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="errorAdd"></div>
-                <div class="form-group mb-3">
-                    <input type="hidden" id="id_edas" value="">
-                    <input type="hidden" id="id_criteria" value="">
-                    <label for="information">Keterangan Sub-Kriteria</label>
-                    <input type="text" class="information form-control" id="information"
-                        value="{{ old('information') }}" required>
-                    <label for="value">Bobot</label>
-                    <input type="number" class="value form-control" id="value" value="{{ old('value') }}" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-target="modal" data-dismiss="modal"
-                    onclick="closeModal('add_subcriteria_modal')">Close</button>
-                <button type="button" class="btn btn-primary add_subcriteria">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End- Add Sub-Criteria Modal -->
+@endsection
 
-<!-- Delete Sub-Criteria Modal -->
-<div class="modal fade" id="modal_delete_subcriteria" tabindex="-1" role="dialog"
-    aria-labelledby="modal_delete_subcriteriaLabel" aria-hidden="true" data-toggle="modal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal_delete_subcriteriaLabel">Title</h5>
-                <button type="button" class="close" aria-label="Close" data-dismiss="modal"
-                    onclick="closeModal('modal_delete_subcriteria')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" id="delete_id">
-                <h2>WARNING</h2>
-                <h3>Are you sure to delete everything inside this Sub-Criteria!!!</h3>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary close_btn" data-dismiss="modal"
-                    onclick="closeModal('modal_delete_subcriteria')">Close</button>
-                <button type="button" class="btn btn-primary proceed_delete_subcriteria">Yes, delete</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End- Delete Sub-Criteria Modal -->
+@section('add_modal')
+<input type="hidden" id="id_edas" value="">
+<input type="hidden" id="id_criteria" value="">
+<label for="information">Keterangan Sub-Kriteria</label>
+<input type="text" class="information form-control" id="information" value="{{ old('information') }}" required>
+<label for="value">Bobot</label>
+<input type="number" class="value form-control" id="value" value="{{ old('value') }}" required>
+@endsection
 
-<!-- Edit Sub-Criteria Modal -->
-<div class="modal fade" id="modal_edit_subcriteria" tabindex="-1" role="dialog"
-    aria-labelledby="modal_edit_subcriteriaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal_edit_subcriteriaLabel">Title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    onclick="closeModal('modal_edit_subcriteria')">
-                    <span aria-hidden="true">x</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="errorEdit"></div>
-                <div class="form-group mb-3">
-                    <input type="hidden" id="id_edit">
-                    <input type="hidden" id="id_edas_edit">
-                    <input type="hidden" id="id_criteria_edit">
-                    <label for="information">Keterangan</label>
-                    <input type="text" class="information form-control" id="information_edit"
-                        value="{{ old('information') }}" required>
-                    <label for="value">Nilai</label>
-                    <input type="number" class="value form-control" id="value_edit" value="{{ old('value') }}" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                    onclick="closeModal('modal_edit_subcriteria')">Close</button>
-                <button type="button" class="btn btn-primary update_subcriteria">Update</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End- Edit Sub-Criteria Modal -->
-
+@section('edit_modal')
+<input type="hidden" id="id_edit">
+<input type="hidden" id="id_edas_edit">
+<input type="hidden" id="id_criteria_edit">
+<label for="information">Keterangan</label>
+<input type="text" class="information form-control" id="information_edit" value="{{ old('information') }}" required>
+<label for="value">Nilai</label>
+<input type="number" class="value form-control" id="value_edit" value="{{ old('value') }}" required>
 @endsection
 
 @section('js')
@@ -139,7 +71,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
 
-    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+""); 
+    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+"");
     $('#href_alternative').attr('href' , "/dashboard/alternative/"+id_edas+ "");
     $('#href_matrix').attr('href' , "/dashboard/decisionmatrix/"+id_edas+ "");
 
@@ -249,7 +181,7 @@
                     }
                 });
             });
-            
+
     $(document).on('click', '.delete_subcriteria', function(e) {
         e.preventDefault();
         let id_subcriteria = $(this).val();
@@ -281,7 +213,7 @@
                     }
                 });
             });
-            
+
             $(document).on('click', '.edit_subcriteria', function(e) {
                 e.preventDefault();
                 let id_subcriteria = $(this).val();

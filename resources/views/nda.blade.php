@@ -1,6 +1,8 @@
-@extends('layouts.sepuh')
+@extends('layouts.crud')
 
-@section('content')
+@section('title', 'NDA')
+
+@section('main')
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -37,7 +39,7 @@
 
     $('.table-title').html('<b>NDA for ' + "{{ $edas->name }}<b>");
 
-    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+""); 
+    $('#href_criteria').attr('href', "/dashboard/criteria/"+id_edas+"");
     $('#href_alternative').attr('href' , "/dashboard/alternative/"+id_edas+ "");
     $('#href_matrix').attr('href' , "/dashboard/decisionmatrix/"+id_edas+ "");
 
@@ -59,7 +61,7 @@
                     </tr>`);
         } else {
             let head = `<tr><th></th>`;
-            
+
             criterias.forEach(criteria => {
                 head += `<th>` +criteria.name+ `</th>`;
             });
